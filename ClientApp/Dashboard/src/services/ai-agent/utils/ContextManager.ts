@@ -1,7 +1,7 @@
 // AI Agent Utility - Context Management
 // Handles token estimation and context window truncation
 
-import type { AIMessage } from '../../types/ai-agent';
+import type { AIMessage } from '../../../types/ai-agent';
 
 export interface ContextWindowOptions {
     maxTokens: number;

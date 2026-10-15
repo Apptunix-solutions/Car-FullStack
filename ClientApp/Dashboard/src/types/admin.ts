@@ -4,14 +4,16 @@
  */
 
 // Administrative Role Definitions
-export enum AdminRole {
-  SUPER_ADMIN = 'SuperAdmin',
-  ADMINISTRATION_ADMIN = 'AdministrationAdmin',
-  CONTENT_ADMIN = 'ContentAdmin',
-  MARKETPLACE_ADMIN = 'MarketplaceAdmin',
-  AI_AGENT_ADMIN = 'AIAgentAdmin',
-  MARKETING_ADMIN = 'MarketingAdmin'
-}
+export const AdminRole = {
+  SUPER_ADMIN: 'SuperAdmin',
+  ADMINISTRATION_ADMIN: 'AdministrationAdmin',
+  CONTENT_ADMIN: 'ContentAdmin',
+  MARKETPLACE_ADMIN: 'MarketplaceAdmin',
+  AI_AGENT_ADMIN: 'AIAgentAdmin',
+  MARKETING_ADMIN: 'MarketingAdmin'
+} as const;
+
+export type AdminRole = (typeof AdminRole)[keyof typeof AdminRole];
 
 // Permission Structure
 export interface Permission {

@@ -47,7 +47,7 @@ export class SignalRManager {
           type: 'info',
           category: 'system',
           priority: 'medium',
-          read: false,
+          isRead: false,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString()
         };
