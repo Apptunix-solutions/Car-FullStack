@@ -9,10 +9,10 @@ namespace Domain.Entities.Community.Groups
         public Guid? ParentReplyId { get; set; }
         public string Content { get; set; } = string.Empty;
         public int LikeCount { get; set; } = 0;
-        public bool IsDeleted { get; set; } = false;
+        public new bool IsDeleted { get; set; } = false;
 
         // Foreign Keys
-        public Guid CreatedBy { get; set; }
+        public new Guid CreatedBy { get; set; }
 
         // Navigation Properties
         public virtual GroupDiscussion Discussion { get; set; } = null!;

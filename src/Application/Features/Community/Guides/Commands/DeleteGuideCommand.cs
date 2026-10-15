@@ -15,6 +15,6 @@ public class DeleteGuideCommandHandler : IRequestHandler<DeleteGuideCommand, Api
     {
         // Mock implementation
         await Task.Delay(1, cancellationToken);
-        return ApiResponseDto<object>.Success(null);
+        return ApiResponseDto<object>.Success(new object());
     }
 }

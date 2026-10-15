@@ -10,13 +10,13 @@ namespace Application.Common.Models
         public bool HasPreviousPage => PageNumber > 1;
         public bool HasNextPage => PageNumber < TotalPages;
 
-        public PaginatedList(List<T> items, int count, int pageNumber, int pageSize)
+        public PaginatedList(List<T>? items = null, int count = 0, int pageNumber = 1, int pageSize = 10)
         {
             PageNumber = pageNumber;
             PageSize = pageSize;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
             TotalCount = count;
-            Items = items;
+            Items = items ?? new List<T>();
         }
 
         public static PaginatedList<T> Create(IQueryable<T> source, int pageNumber, int pageSize)

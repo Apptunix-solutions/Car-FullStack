@@ -21,7 +21,7 @@ namespace Domain.Entities.Community.Groups
         public int ReplyCount { get; set; } = 0;
 
         // Foreign Keys
-        public Guid CreatedBy { get; set; }
+        public new Guid CreatedBy { get; set; }
         public Guid? LockedBy { get; set; }
 
         // Navigation Properties
