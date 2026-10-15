@@ -47,6 +47,10 @@
     "src/**/*.spec.ts",
     "src/**/*.spec.tsx",
     "src/**/__tests__/**/*",
-    "src/tests/**/*"
+    "src/tests/**/*",
+    "src/components/qa/**/*",
+    "src/pages/community/qa/**/*",
+    "src/examples/**/*",
+    "src/hooks/marketplace/**/*"
   ]
 }

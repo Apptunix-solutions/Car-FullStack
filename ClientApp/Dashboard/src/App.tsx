@@ -34,8 +34,7 @@ const ModelTraining = React.lazy(() => import('./pages').then(module => ({ defau
 const Media = React.lazy(() => import('./pages').then(module => ({ default: module.Media })));
 const MediaManagement = React.lazy(() => import('./pages').then(module => ({ default: module.MediaManagement })));
 const ThemesManagement = React.lazy(() => import('./pages').then(module => ({ default: module.ThemesManagement })));
-const QAManagement = React.lazy(() => import('./pages').then(module => ({ default: module.QAManagement })));
-const QAAnalytics = React.lazy(() => import('./pages').then(module => ({ default: module.QAAnalytics })));
+
 const PostsManagement = React.lazy(() => import('./pages').then(module => ({ default: module.PostsManagement })));
 const GroupsManagement = React.lazy(() => import('./pages').then(module => ({ default: module.GroupsManagement })));
 const FriendsManagement = React.lazy(() => import('./pages').then(module => ({ default: module.FriendsManagement })));
@@ -268,30 +267,6 @@ const AppRoutes = () => {
               <MainLayout>
                 <Suspense fallback={<PageLoader />}>
                   <ThemesManagement />
-                </Suspense>
-              </MainLayout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/community/qa"
-          element={
-            <ProtectedRoute requiredRoles={["Admin"]}>
-              <MainLayout>
-                <Suspense fallback={<PageLoader />}>
-                  <QAManagement />
-                </Suspense>
-              </MainLayout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/community/qa/analytics"
-          element={
-            <ProtectedRoute requiredRoles={["Admin"]}>
-              <MainLayout>
-                <Suspense fallback={<PageLoader />}>
-                  <QAAnalytics />
                 </Suspense>
               </MainLayout>
             </ProtectedRoute>

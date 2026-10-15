@@ -1,8 +1,6 @@
 export { DashboardOverview } from './dashboard';
 export { Content, LocalizationManagement, Media, ThemesManagement } from './content';
 export {
-    QAManagement,
-    QAAnalytics,
     PostsManagement,
     GroupsManagement,
     FriendsManagement,

@@ -54,7 +54,7 @@ export function useProductValidation() {
           const errorMap: Record<string, string> = {};
           const errorList: ValidationError[] = [];
 
-          error.errors.forEach((err) => {
+          error.issues.forEach((err) => {
             const field = err.path.join('.');
             errorMap[field] = err.message;
             errorList.push({
@@ -103,7 +103,7 @@ export function useProductValidation() {
           const errorMap: Record<string, string> = {};
           const errorList: ValidationError[] = [];
 
-          error.errors.forEach((err) => {
+          error.issues.forEach((err) => {
             const field = err.path.join('.');
             errorMap[field] = err.message;
             errorList.push({
@@ -159,7 +159,7 @@ export function useProductValidation() {
         return null;
       } catch (error) {
         if (error instanceof z.ZodError) {
-          const errorMessage = error.errors[0]?.message || 'Invalid value';
+          const errorMessage = error.issues[0]?.message || 'Invalid value';
           
           // Set error for this field
           setErrors((prev) => ({
@@ -192,7 +192,7 @@ export function useProductValidation() {
           const errorMap: Record<string, string> = {};
           const errorList: ValidationError[] = [];
 
-          error.errors.forEach((err) => {
+          error.issues.forEach((err) => {
             const field = err.path.join('.');
             errorMap[field] = err.message;
             errorList.push({
@@ -235,7 +235,7 @@ export function useProductValidation() {
           const errorMap: Record<string, string> = {};
           const errorList: ValidationError[] = [];
 
-          error.errors.forEach((err) => {
+          error.issues.forEach((err) => {
             const field = err.path.join('.');
             errorMap[field] = err.message;
             errorList.push({
