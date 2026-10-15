@@ -2,4 +2,4 @@
 export * from './environment';
 export * from './features';
 export * from './api';
-export * from './debug';
+export * from './environment/debug';

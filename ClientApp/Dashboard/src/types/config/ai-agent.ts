@@ -25,6 +25,29 @@ export interface AIAgentConfig {
     threshold: 'BLOCK_NONE' | 'BLOCK_ONLY_HIGH' | 'BLOCK_MEDIUM_AND_ABOVE' | 'BLOCK_LOW_AND_ABOVE';
   }>;
 
+  // LLM provider settings
+  llmProvider: string;
+  model: string;
+  fallbackProvider?: string;
+
+  // Caching
+  enableCaching: boolean;
+  cacheTTL: number;
+  cacheStrategy: string;
+  maxCacheSize: number;
+
+  // Cost controls
+  enableCostLimits: boolean;
+  dailyCostLimit: number;
+  monthlyCostLimit: number;
+  costAlertThreshold: number;
+
+  // Notifications
+  notifyOnError: boolean;
+  notifyOnCostLimit: boolean;
+  notifyOnTrainingComplete: boolean;
+  notificationEmail?: string;
+
   // Advanced Settings
   advanced: AdvancedConfig;
 }

@@ -6,6 +6,7 @@ import Button from '../forms/buttons/Button';
 import Input from '../forms/inputs/Input';
 import Checkbox from '../forms/checkboxes/Checkbox';
 import { authService } from '../../services/auth';
+import { ENV } from '../../config/environment';
 
 export const LoginForm: React.FC = () => {
     const { t } = useTranslation();
@@ -23,6 +24,12 @@ export const LoginForm: React.FC = () => {
         setError(null);
 
         console.log('[LoginForm] Attempting login with:', { email, rememberMe });
+
+        if (!ENV.API_BASE_URL) {
+            setError('The backend API is not configured for this deployment. Set VITE_API_BASE_URL to the public API URL and redeploy.');
+            setIsLoading(false);
+            return;
+        }
 
         try {
             const result = await authService.login({ email, password, rememberMe });
@@ -71,7 +78,10 @@ export const LoginForm: React.FC = () => {
             }
         } catch (err: any) {
             console.error('[LoginForm] Login exception:', err);
-            setError(err.message || t('login_failed', 'Failed to sign in. Please check your credentials.'));
+            const message = err?.message === 'Network error occurred'
+                ? 'Unable to reach the backend API. Verify that the API is deployed, publicly accessible, and configured with VITE_API_BASE_URL.'
+                : err?.message || t('login_failed', 'Failed to sign in. Please check your credentials.');
+            setError(message);
         } finally {
             setIsLoading(false);
         }

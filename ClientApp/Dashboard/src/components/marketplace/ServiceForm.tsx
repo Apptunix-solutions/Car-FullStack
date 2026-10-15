@@ -13,8 +13,8 @@ import { type ImageUploadResult } from '../../services/marketplace/image-upload.
 import { Card } from '../ui/Card';
 import { Button } from '../forms/buttons/Button';
 import { Input } from '../forms/inputs/Input';
-import { Textarea } from '../forms/inputs/Textarea';
-import { Select } from '../forms/inputs/Select';
+import { Textarea } from '../forms/textareas/Textarea';
+import { Select } from '../forms/selects/Select';
 import { Label } from '../forms/inputs/Label';
 import { Loader2 } from 'lucide-react';
 

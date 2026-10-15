@@ -20,10 +20,16 @@ const getEnvironmentConfig = (): EnvironmentConfig => {
   const isDevelopment = import.meta.env.DEV;
   const isProduction = import.meta.env.PROD;
 
+  const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+  const configuredAiAgentUrl = import.meta.env.VITE_AI_AGENT_URL?.trim();
+  const configuredWsUrl = import.meta.env.VITE_WS_URL?.trim();
+
   return {
-    API_BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5100/api',
-    AI_AGENT_URL: import.meta.env.VITE_AI_AGENT_URL || 'http://localhost:8003/api',
-    WS_URL: import.meta.env.VITE_WS_URL || 'ws://localhost:5100/hub',
+    // Never point a deployed browser at localhost. An unset production URL is
+    // handled by the login UI with an actionable setup message.
+    API_BASE_URL: configuredApiBaseUrl || (isDevelopment ? 'http://localhost:5100/api' : ''),
+    AI_AGENT_URL: configuredAiAgentUrl || (isDevelopment ? 'http://localhost:8003/api' : ''),
+    WS_URL: configuredWsUrl || (isDevelopment ? 'ws://localhost:5100/hub' : ''),
     ENVIRONMENT: isProduction ? 'production' : isDevelopment ? 'development' : 'staging',
     DEBUG: isDevelopment || import.meta.env.VITE_DEBUG === 'true',
     VERSION: import.meta.env.VITE_APP_VERSION || '1.0.0',

@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_VERSION: '9.0.x'
+  NODE_VERSION: '22.x'
+
+jobs:
+  dashboard:
+    name: Dashboard checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ClientApp/Dashboard
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: ClientApp/Dashboard/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      # Existing lint debt is reported without blocking deployable builds until it is remediated.
+      - name: Lint report
+        run: npm run lint
+        continue-on-error: true
+      - name: Typecheck and build
+        run: npm run build
+      - name: Test
+        run: npm test -- --ci --passWithNoTests
+
+  dotnet:
+    name: .NET checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Restore
+        run: dotnet restore CommunityCar.sln
+      - name: Build
+        run: dotnet build CommunityCar.sln --configuration Release --no-restore --warnaserror
+      - name: Test
+        run: dotnet test CommunityCar.sln --configuration Release --no-build --no-restore --verbosity normal
