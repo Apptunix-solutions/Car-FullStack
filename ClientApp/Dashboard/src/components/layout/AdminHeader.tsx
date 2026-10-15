@@ -327,67 +327,6 @@ const NotificationDropdown: React.FC<{
     </div>
   );
 };
-          </h3>
-          {unreadCount > 0 && (
-            <Button
-              onClick={onMarkAllAsRead}
-              variant="ghost"
-              size="sm"
-              className="text-sm"
-            >
-              Mark all read
-            </Button>
-          )}
-        </div>
-      </div>
-
-      {/* Notifications list */}
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        {notifications.length === 0 ? (
-          <div className="p-4 text-center text-gray-500 dark:text-gray-400">
-            No notifications
-          </div>
-        ) : (
-          notifications.map((notification) => {
-            const Icon = getNotificationIcon(notification.type);
-            const iconColor = getNotificationColor(notification.type);
-            
-            return (
-              <div
-                key={notification.id}
-                className={`
-                  p-4 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer
-                  ${!notification.read ? 'bg-blue-50 dark:bg-blue-900/10' : ''}
-                `}
-                onClick={() => onMarkAsRead(notification.id)}
-              >
-                <div className="flex items-start space-x-3">
-                  <Icon className={`h-5 w-5 mt-0.5 ${iconColor}`} />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">
-                        {notification.title}
-                      </p>
-                      {!notification.read && (
-                        <div className="h-2 w-2 bg-blue-600 rounded-full" />
-                      )}
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                      {notification.message}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
-                      {notification.timestamp.toLocaleTimeString()}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })
-        )}
-      </div>
-    </div>
-  );
-};
 
 // User profile dropdown component
 const UserProfileDropdown: React.FC<{
