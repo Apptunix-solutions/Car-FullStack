@@ -18,31 +18,22 @@ import type {
   ContentAnalytics as _ServiceContentAnalytics,
   SystemAnalytics as _ServiceSystemAnalytics
 } from '../../types/dashboard';
+import type { AdvancedAnalytics, AnalyticsMetadata } from '../../types/admin/analytics-metadata';
 import type {
-  AdvancedAnalytics,
   UserAnalytics,
   UserActivityData,
-  UserDemographics,
+  UserDemographics
+} from '../../types/admin/user-analytics';
+import type {
   ContentAnalytics,
   CategoryData,
-  ContentTrendData,
-  EngagementAnalytics,
-  PageData,
-  EngagementTrendData,
-  SystemAnalytics,
-  ResourceUsageData,
-  ErrorLogData,
-  SecurityAnalytics,
-  ThreatData,
-  SecurityEventData,
-  PerformanceAnalytics,
-  PerformanceTrendData,
-  EndpointData,
-  AnalyticsMetadata,
-  AdminUser,
-  UserFilters,
-  PaginatedResult
-} from '../../types/admin';
+  ContentTrendData
+} from '../../types/admin/content-analytics';
+import type { EngagementAnalytics, PageData, EngagementTrendData } from '../../types/admin/engagement-analytics';
+import type { SystemAnalytics, ResourceUsageData } from '../../types/admin/system-analytics';
+import type { ErrorLogData, SecurityAnalytics, ThreatData, SecurityEventData } from '../../types/admin/security-analytics';
+import type { PerformanceAnalytics, PerformanceTrendData, EndpointData } from '../../types/admin/performance-analytics';
+import type { AdminUser, UserFilters, PaginatedResult } from '../../types/admin/user';
 
 export class AdminService {
   private static instance: AdminService;
