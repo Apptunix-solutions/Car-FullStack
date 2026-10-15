@@ -4,8 +4,7 @@ import { tap, catchError, finalize, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ToastService } from '../../../../core/services/toast.service';
 import { LoadingService } from '../../../../shared/services/loading/loading.service';
-import { Post, CreatePostRequest } from '../../pages/models/post.model';
-import { PostDto } from '../../../../shared/models/community/post.model';
+import { CreatePostRequest, Post, PostDto } from '../../../../shared/models/community/post.model';
 import { Result, PaginatedResult } from '../../../../core/models/result.model';
 import { environment } from '../../../../../environments/environment';
 
@@ -199,8 +198,8 @@ export class PostService {
             viewsCount: dto.viewsCount,
             likesCount: dto.likesCount,
             commentsCount: dto.commentsCount,
-            createdAt: typeof dto.createdAt === 'string' ? dto.createdAt : dto.createdAt.toISOString(),
-            updatedAt: dto.updatedAt ? (typeof dto.updatedAt === 'string' ? dto.updatedAt : dto.updatedAt.toISOString()) : undefined,
+            createdAt: new Date(dto.createdAt),
+            updatedAt: dto.updatedAt ? new Date(dto.updatedAt) : undefined,
             userId: dto.userId,
             userFirstName: dto.userFirstName,
             userLastName: dto.userLastName,

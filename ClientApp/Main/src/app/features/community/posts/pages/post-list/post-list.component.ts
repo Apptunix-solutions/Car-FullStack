@@ -134,6 +134,7 @@ export class PostListComponent implements OnInit, OnDestroy {
         userFirstName: i % 2 === 0 ? 'Mahmoud' : 'Ahmed',
         userLastName: 'Said',
         likesCount: 10 + i * 5,
+        commentsCount: i % 4,
         createdAt: new Date(),
         type: 1,
         status: 1,
