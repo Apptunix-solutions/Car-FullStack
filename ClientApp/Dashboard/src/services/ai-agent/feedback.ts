@@ -37,7 +37,9 @@ interface FeedbackAnalytics {
 export class AIAgentFeedbackService {
   // List all feedback
   async listFeedback(params?: FeedbackListParams): Promise<FeedbackListResponse> {
-    const response = await apiClient.get(`${ENV.AI_AGENT_URL}/feedback`, { params });
+    const response = await apiClient.get(`${ENV.AI_AGENT_URL}/feedback`, {
+      params: params as Record<string, unknown> | undefined
+    });
     return response as any as FeedbackListResponse;
   }
 

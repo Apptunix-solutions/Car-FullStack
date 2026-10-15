@@ -75,6 +75,16 @@ export interface PermissionCheck {
 }
 
 // Administrative Session Information
+export interface PaginatedResult<T> {
+  items: T[];
+  pageNumber: number;
+  pageSize: number;
+  totalCount: number;
+  totalPages: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+}
+
 export interface AdminSession {
   id: string;
   userId: string;
