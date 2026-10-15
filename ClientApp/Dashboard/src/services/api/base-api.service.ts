@@ -1,5 +1,4 @@
 import { API_CONFIG } from '../../config/api/base';
-import { authService } from '../auth';
 import { cacheService } from '../cache/cache.service';
 
 export interface ApiRequestOptions {
@@ -120,7 +119,7 @@ export class BaseApiService {
       ...customHeaders
     };
     
-    const token = authService.getToken();
+    const token = typeof localStorage !== 'undefined' ? localStorage.getItem('auth_token') : null;
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }

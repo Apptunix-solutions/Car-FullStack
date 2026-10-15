@@ -1,5 +1,5 @@
-import { ApiService } from '../api/ApiService';
-import type { ApiResult } from '../../types/api';
+import { ApiService } from '../../../../services/api/ApiService';
+import type { ApiResult } from '../../../../types/api';
 import type {
   ApiResponse,
   PaginatedApiResponse,
@@ -12,9 +12,9 @@ import type {
   CreateQuestionRequest,
   UpdateQuestionRequest,
   CloseQuestionRequest
-} from '../../types/qa/api-types';
-import { QA_API_ENDPOINTS } from '../../types/qa/api-types';
-import type { QAQuestionService as IQAQuestionService } from '../../types/qa/api';
+} from '../types/api-types';
+import { QA_API_ENDPOINTS } from '../types/api-types';
+import type { QAQuestionService as IQAQuestionService } from '../types/api';
 
 export class QAQuestionService extends ApiService implements IQAQuestionService {
   private readonly baseUrl = QA_API_ENDPOINTS.QUESTIONS.BASE;

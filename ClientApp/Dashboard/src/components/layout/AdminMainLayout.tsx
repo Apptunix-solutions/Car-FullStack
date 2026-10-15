@@ -625,7 +625,7 @@ export const AdminMainLayout: React.FC<AdminMainLayoutProps> = ({ children }) =>
 
   // Toggle sidebar with manual collapse tracking
   const handleToggleCollapse = useCallback(() => {
-    setSidebarCollapsed(prev => {
+    setSidebarCollapsed((prev: boolean) => {
       const newState = !prev;
       localStorage.setItem('admin-sidebar-manually-collapsed', JSON.stringify(newState));
       return newState;
@@ -634,10 +634,10 @@ export const AdminMainLayout: React.FC<AdminMainLayoutProps> = ({ children }) =>
 
   // Debounce utility function
   function debounce<T extends (...args: any[]) => any>(func: T, wait: number): T {
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
     return ((...args: any[]) => {
       clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
+      timeout = setTimeout(() => func(...args), wait);
     }) as T;
   }
 

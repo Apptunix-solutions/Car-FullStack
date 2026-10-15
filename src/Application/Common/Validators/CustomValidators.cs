@@ -176,7 +176,7 @@ namespace Application.Common.Validators
             return ruleBuilder
                 .GreaterThan(0)
                 .WithMessage("Amount must be positive")
-                .ScalePrecision(2, 18)
+                .PrecisionScale(18, 2, true)
                 .WithMessage("Amount cannot have more than 2 decimal places");
         }
 

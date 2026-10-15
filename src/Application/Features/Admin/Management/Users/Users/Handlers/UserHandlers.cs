@@ -246,9 +246,12 @@ namespace Application.Features.Admin.Management.Users.Users.Handlers
                         Id = u.Id,
                         FirstName = u.FirstName,
                         LastName = u.LastName,
-                        Email = u.Email,
+Email = u.Email ?? string.Empty,
                         IsActive = u.IsActive,
-                        Roles = u.UserRoles.Select(ur => ur.Role.Name).ToList(),
+Roles = u.UserRoles
+                        .Where(ur => ur.Role != null && ur.Role.Name != null)
+                        .Select(ur => ur.Role!.Name!)
+                        .ToList(),
                         LastLogin = u.LastLoginAt
                     })
                     .ToListAsync(cancellationToken);

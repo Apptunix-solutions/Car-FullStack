@@ -36,7 +36,7 @@ public class UpdateGuideCommandHandler : IRequestHandler<UpdateGuideCommand, Gui
         guide.Difficulty = request.Request.Difficulty;
         guide.EstimatedReadTime = request.Request.EstimatedReadTime;
         guide.Tags = request.Request.Tags;
-        guide.ThumbnailUrl = request.Request.ThumbnailUrl;
+        guide.ThumbnailUrl = request.Request.ThumbnailUrl ?? string.Empty;
 
         // Update steps
         var existingStepIds = guide.Steps.Select(s => s.Id).ToList();

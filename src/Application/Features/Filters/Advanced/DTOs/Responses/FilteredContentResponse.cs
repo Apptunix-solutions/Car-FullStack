@@ -4,7 +4,7 @@ namespace Application.Features.Filters.Advanced.DTOs.Responses;
 
 public class FilteredContentResponse
 {
-    public PaginatedList<FilteredItem> Items { get; set; } = new();
+    public PaginatedList<FilteredItem> Items { get; set; } = new([], 0, 1, 10);
     public FilterSummary Summary { get; set; } = new();
     public List<FilterFacet> Facets { get; set; } = new();
 }

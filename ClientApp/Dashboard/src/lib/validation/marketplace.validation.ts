@@ -51,7 +51,7 @@ export const createProductSchema = z.object({
     .max(10000, 'Minimum stock level must be less than 10,000'),
 
   category: z.nativeEnum(ProductCategory, {
-    errorMap: () => ({ message: 'Please select a valid category' })
+    error: 'Please select a valid category'
   }),
 
   weight: z
@@ -217,11 +217,11 @@ export const updateProductSchema = z.object({
     .optional(),
 
   status: z.nativeEnum(ProductStatus, {
-    errorMap: () => ({ message: 'Please select a valid status' })
+    error: 'Please select a valid status'
   }).optional(),
 
   category: z.nativeEnum(ProductCategory, {
-    errorMap: () => ({ message: 'Please select a valid category' })
+    error: 'Please select a valid category'
   }).optional(),
 
   imageUrl: z
@@ -332,8 +332,8 @@ export const bulkProductOperationSchema = z.object({
     .min(1, 'At least one product must be selected')
     .max(100, 'Cannot perform bulk operation on more than 100 products at once'),
   
-  operation: z.enum(['delete', 'updateStatus', 'updateCategory', 'updateFeatured'], {
-    errorMap: () => ({ message: 'Invalid bulk operation' })
+  operation: z.enum(['delete', 'updateStatus', 'updateCategory', 'updateFeatured'] as const, {
+    error: 'Invalid bulk operation'
   }),
   
   // Optional parameters based on operation
@@ -434,7 +434,7 @@ export const createServiceSchema = z.object({
     .max(10080, 'Estimated duration must be less than 10,080 minutes (1 week)'),
 
   serviceType: z.nativeEnum(ServiceType, {
-    errorMap: () => ({ message: 'Please select a valid service type' })
+    error: 'Please select a valid service type'
   }),
 
   category: z
@@ -606,7 +606,7 @@ export const updateServiceSchema = z.object({
     .nullable(),
 
   serviceType: z.nativeEnum(ServiceType, {
-    errorMap: () => ({ message: 'Please select a valid service type' })
+    error: 'Please select a valid service type'
   }).optional(),
 
   category: z
@@ -625,7 +625,7 @@ export const updateServiceSchema = z.object({
     .nullable(),
 
   status: z.nativeEnum(ServiceStatus, {
-    errorMap: () => ({ message: 'Please select a valid status' })
+    error: 'Please select a valid status'
   }).optional(),
 
   isActive: z.boolean().optional(),
@@ -696,7 +696,7 @@ export const updateServiceSchema = z.object({
 /**
  * Service filters validation schema
  */
-export const serviceFiltersSchema = z.object({
+const serviceFiltersBaseSchema = z.object({
   page: z.number().int().positive().optional(),
   pageSize: z.number().int().positive().max(100).optional(),
   searchTerm: z.string().max(200).optional(),
@@ -713,7 +713,9 @@ export const serviceFiltersSchema = z.object({
   isPopular: z.boolean().optional(),
   sortBy: z.string().max(50).optional(),
   sortDescending: z.boolean().optional()
-}).refine(
+});
+
+export const serviceFiltersSchema = serviceFiltersBaseSchema.refine(
   (data) => {
     // Validate that maxPrice is greater than minPrice
     if (data.minPrice && data.maxPrice && data.maxPrice <= data.minPrice) {
@@ -736,8 +738,8 @@ export const bulkServiceOperationSchema = z.object({
     .min(1, 'At least one service must be selected')
     .max(100, 'Cannot perform bulk operation on more than 100 services at once'),
   
-  operation: z.enum(['delete', 'updateStatus', 'updateActive', 'updatePopular'], {
-    errorMap: () => ({ message: 'Invalid bulk operation' })
+  operation: z.enum(['delete', 'updateStatus', 'updateActive', 'updatePopular'] as const, {
+    error: 'Invalid bulk operation'
   }),
   
   // Optional parameters based on operation
@@ -785,7 +787,7 @@ export const locationSearchSchema = z.object({
     .optional()
     .default(10),
   
-  filters: serviceFiltersSchema.partial().optional()
+  filters: serviceFiltersBaseSchema.partial().optional()
 });
 
 /**

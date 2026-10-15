@@ -21,7 +21,7 @@ namespace Domain.Entities.Community.Groups
         public List<string> Tags { get; set; } = new();
 
         // Foreign Keys
-        public Guid CreatedBy { get; set; }
+        public new Guid CreatedBy { get; set; }
 
         // Navigation Properties
         public virtual Group Group { get; set; } = null!;

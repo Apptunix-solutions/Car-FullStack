@@ -1,4 +1,6 @@
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/dom';
+import { act } from 'react';
 import { jest } from '@jest/globals';
 import '@testing-library/jest-dom';
 
@@ -8,7 +10,7 @@ import { UserReputationManagementComponent } from '../UserReputationManagementCo
 import { QAHealthMonitoringComponent } from '../QAHealthMonitoringComponent';
 
 // Mock API service
-const mockApiService = {
+var mockApiService = {
   get: jest.fn() as jest.MockedFunction<any>,
   post: jest.fn() as jest.MockedFunction<any>,
   put: jest.fn() as jest.MockedFunction<any>,
@@ -31,7 +33,12 @@ jest.mock('../../../hooks/useQASignalRConnection', () => ({
 }));
 
 jest.mock('../../../services/api/ApiService', () => ({
-  ApiService: mockApiService,
+  ApiService: jest.fn().mockImplementation(() => ({
+    get: (...args: any[]) => mockApiService?.get(...args),
+    post: (...args: any[]) => mockApiService?.post(...args),
+    put: (...args: any[]) => mockApiService?.put(...args),
+    delete: (...args: any[]) => mockApiService?.delete(...args),
+  })),
 }));
 
 /**

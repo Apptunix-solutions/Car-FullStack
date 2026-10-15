@@ -9,5 +9,5 @@ public interface IAlertService
     Task<Result<List<SystemAlertDto>>> GetActiveAlertsAsync();
     Task<Result<bool>> ResolveAlertAsync(Guid alertId);
     Task<Result<bool>> DismissAlertAsync(Guid alertId);
-    Task<Result<int>> GetAlertCountAsync(string severity = null);
+    Task<Result<int>> GetAlertCountAsync(string? severity = null);
 }

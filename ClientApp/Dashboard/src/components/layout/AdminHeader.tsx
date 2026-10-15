@@ -333,8 +333,8 @@ const UserProfileDropdown: React.FC<{
   adminUser: any;
   onLogout: () => void;
 }> = ({ adminUser, onLogout }) => {
-  const primaryRole = adminUser?.roles?.[0];
-  const roleConfig = primaryRole ? ROLE_CONFIG[primaryRole] : null;
+  const primaryRole = adminUser?.roles?.[0] as AdminRole | undefined;
+  const roleConfig = primaryRole && primaryRole in ROLE_CONFIG ? ROLE_CONFIG[primaryRole] : null;
   const RoleIcon = roleConfig?.icon || Shield;
 
   return (
@@ -593,6 +593,11 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
                     notifications={notifications}
                     onMarkAsRead={handleMarkAsRead}
                     onMarkAllAsRead={handleMarkAllAsRead}
+                    onNotificationAction={(notification) => {
+                      if (notification.actionUrl) {
+                        window.location.assign(notification.actionUrl);
+                      }
+                    }}
                   />
                 </div>
               )}

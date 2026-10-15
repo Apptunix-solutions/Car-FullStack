@@ -1,5 +1,5 @@
-import { ApiService } from '../api/ApiService';
-import type { ApiResult } from '../../types/api';
+import { ApiService } from '../../../../services/api/ApiService';
+import type { ApiResult } from '../../../../types/api';
 import type {
   ApiResponse,
   PaginatedApiResponse,
@@ -30,8 +30,8 @@ import type {
   ModerationAction,
   BulkModerationRequest,
   UserModerationInfo
-} from '../../types/qa/api-types';
-import { QA_API_ENDPOINTS } from '../../types/qa/api-types';
+} from '../types/api-types';
+import { QA_API_ENDPOINTS } from '../types/api-types';
 import type {
   QAQuestionService,
   QAAnswerService,
@@ -41,7 +41,7 @@ import type {
   QATagService,
   QASearchService,
   QAModerationActions
-} from '../../types/qa/api';
+} from '../types/api';
 
 /**
  * Unified QA Service extending existing ApiService patterns

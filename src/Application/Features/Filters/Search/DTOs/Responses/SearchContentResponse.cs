@@ -4,7 +4,7 @@ namespace Application.Features.Filters.Search.DTOs.Responses;
 
 public class SearchContentResponse
 {
-    public PaginatedList<SearchResultItem> Results { get; set; } = new();
+    public PaginatedList<SearchResultItem> Results { get; set; } = new([], 0, 1, 10);
     public SearchMetadata Metadata { get; set; } = new();
     public List<SearchSuggestion> Suggestions { get; set; } = new();
 }
