@@ -31,7 +31,8 @@ import type {
 } from '../../types/admin/content-analytics';
 import type { EngagementAnalytics, PageData, EngagementTrendData } from '../../types/admin/engagement-analytics';
 import type { SystemAnalytics, ResourceUsageData } from '../../types/admin/system-analytics';
-import type { ErrorLogData, SecurityAnalytics, ThreatData, SecurityEventData } from '../../types/admin/security-analytics';
+import type { SecurityAnalytics, ThreatData, SecurityEventData } from '../../types/admin/security-analytics';
+import type { ErrorLogData } from '../../types/admin/system-analytics';
 import type { PerformanceAnalytics, PerformanceTrendData, EndpointData } from '../../types/admin/performance-analytics';
 import type { AdminUser, UserFilters, PaginatedResult } from '../../types/admin/user';
 

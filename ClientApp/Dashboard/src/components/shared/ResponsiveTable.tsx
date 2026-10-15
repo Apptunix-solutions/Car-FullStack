@@ -3,7 +3,7 @@ import { useIsMobile } from '../../hooks/useResponsive';
 
 interface Column<T> {
   key: string;
-  header: string;
+  header: ReactNode;
   render: (item: T) => ReactNode;
   mobileRender?: (item: T) => ReactNode;
   hideOnMobile?: boolean;
