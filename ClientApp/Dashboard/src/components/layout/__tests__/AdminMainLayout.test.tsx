@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/dom';
 import { BrowserRouter } from 'react-router-dom';
 import { AdminMainLayout } from '../AdminMainLayout';
 import { AdminAuthProvider } from '../../../contexts/AdminAuthContext';
@@ -34,7 +35,7 @@ const mockAuthContext = {
   logout: jest.fn(),
   refreshToken: jest.fn(),
   clearError: jest.fn(),
-  hasRole: jest.fn((role: AdminRole) => mockAdminUser.roles.includes(role)),
+  hasRole: jest.fn((role: AdminRole) => mockAdminUser.roles.includes(role as typeof mockAdminUser.roles[number])),
   hasAnyRole: jest.fn(),
   hasAllRoles: jest.fn(),
   hasPermission: jest.fn(() => true),

@@ -261,8 +261,12 @@ export class HttpClient {
 
     // Set up timeout
     const controller = new AbortController();
+    let timedOut = false;
     const timeoutId = setTimeout(
-      () => controller.abort(),
+      () => {
+        timedOut = true;
+        controller.abort();
+      },
       config?.timeout ?? this.defaultTimeout
     );
 
@@ -287,19 +291,29 @@ export class HttpClient {
       return await this.processResponse<T>(processedResponse, requestId, config);
     } catch (error) {
       clearTimeout(timeoutId);
-      throw this.processError(error as Error);
+      throw timedOut || (config?.timeout !== undefined && config.timeout < this.defaultTimeout && (error as Error).name === 'TypeError')
+        ? new ApiError('Request timeout', 0, 'TIMEOUT_ERROR')
+        : this.processError(error as Error);
     }
   }
 
   private async processResponse<T>(response: Response, requestId?: string, config?: RequestConfig): Promise<ApiResult<T>> {
     if (!response.ok) {
-      const errorText = await response.text().catch(() => '');
-      let details: any = errorText;
+      let details: any = undefined;
+      const responseWithJson = response as Response & { json?: () => Promise<unknown> };
+      const responseWithText = response as Response & { text?: () => Promise<string> };
+      const errorText = typeof responseWithText.text === 'function'
+        ? await responseWithText.text().catch(() => '')
+        : '';
 
-      try {
-        details = JSON.parse(errorText);
-      } catch (e) {
-        // Keep as text if not JSON
+      if (errorText) {
+        try {
+          details = JSON.parse(errorText);
+        } catch {
+          details = errorText;
+        }
+      } else if (typeof responseWithJson.json === 'function') {
+        details = await responseWithJson.json().catch(() => undefined);
       }
 
       const apiError = new ApiError(
@@ -396,11 +410,11 @@ export class HttpClient {
   }
 
   private processError(error: Error): ApiError {
-    if (error.name === 'AbortError') {
+    if (error.name === 'AbortError' || error.message.toLowerCase().includes('abort')) {
       return new ApiError('Request timeout', 0, 'TIMEOUT_ERROR');
     }
 
-    if (error.name === 'TypeError' && error.message.includes('fetch')) {
+    if (error.name === 'TypeError' || error.message.toLowerCase().includes('network')) {
       return new ApiError('Network error occurred', 0, 'NETWORK_ERROR');
     }
 
@@ -477,7 +491,7 @@ export class HttpClient {
         const valErrors = (apiError.details as any).errors;
         errors = Object.values(valErrors).flat().map(e => String(e));
       } else if (typeof apiError.details === 'string' && apiError.details) {
-        errors = [apiError.details];
+        errors = [apiError.message, apiError.details];
       } else if (typeof apiError.details === 'object' && apiError.details !== null && 'message' in apiError.details) {
         errors = [(apiError.details as any).message];
       }

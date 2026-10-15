@@ -39,6 +39,15 @@ export class QAAnalyticsService extends ApiService {
   async getQAAnalytics(timeRange: '7d' | '30d' | '90d' | '1y' = '30d'): Promise<ApiResult<QAAnalytics>> {
     try {
       const result = await this.get<QAAnalytics>(`/api/v7/qa/analytics/dashboard?timeRange=${timeRange}`);
+      const legacy = result as ApiResult<QAAnalytics> & { data?: { success?: boolean; data?: QAAnalytics } };
+      if (legacy.data && typeof legacy.data.success === 'boolean') {
+        return {
+          succeeded: legacy.data.success,
+          data: legacy.data.data,
+          errors: legacy.data.success ? [] : ['Failed to fetch QA analytics'],
+          statusCode: legacy.statusCode
+        };
+      }
       return result;
     } catch (error) {
       this.handleApiError(error);

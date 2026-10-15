@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { marketplaceService } from '../../services/marketplace';
-import type { Customer } from '../../services/marketplace/customers';
-import type { Product } from '../../services/marketplace/products';
-import type { MarketplaceService } from '../../services/marketplace/services';
+import type { CustomerDto as Customer, ProductDto as Product, ServiceDto as MarketplaceService } from '../../types/marketplace';
 
 export const useMarketplace = () => {
   const [loading, setLoading] = useState(false);
@@ -15,7 +13,7 @@ export const useMarketplace = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.getDashboard(fromDate, toDate);
+      const result: any = await marketplaceService.getDashboard(fromDate, toDate);
       if (result.succeeded) {
         return result.data;
       } else {
@@ -34,7 +32,7 @@ export const useMarketplace = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.getDashboardMetrics(period);
+      const result: any = await marketplaceService.getDashboardMetrics(period);
       if (result.succeeded) {
         return result.data;
       } else {
@@ -54,7 +52,7 @@ export const useMarketplace = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.getMarketplaceAnalytics(fromDate, toDate, segment);
+      const result: any = await marketplaceService.getMarketplaceAnalytics(fromDate, toDate, segment);
       if (result.succeeded) {
         return result.data;
       } else {
@@ -91,7 +89,7 @@ export const useMarketplaceCustomers = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.getCustomers(filters);
+      const result: any = await marketplaceService.getCustomers(filters);
       if (result.succeeded && result.data) {
         setCustomers(result.data.items);
         setTotalCount(result.data.totalCount);
@@ -112,7 +110,7 @@ export const useMarketplaceCustomers = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.createCustomer(customerData);
+      const result: any = await marketplaceService.createCustomer(customerData);
       if (result.succeeded && result.data) {
         setCustomers(prev => [result.data!, ...prev]);
         setTotalCount(prev => prev + 1);
@@ -133,7 +131,7 @@ export const useMarketplaceCustomers = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.updateCustomer(id, customerData);
+      const result: any = await marketplaceService.updateCustomer(id, customerData);
       if (result.succeeded && result.data) {
         setCustomers(prev => prev.map(c => c.id === id ? result.data! : c));
         return result.data;
@@ -153,7 +151,7 @@ export const useMarketplaceCustomers = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.deleteCustomer(id);
+      const result: any = await marketplaceService.deleteCustomer(id);
       if (result.succeeded) {
         setCustomers(prev => prev.filter(c => c.id !== id));
         setTotalCount(prev => prev - 1);
@@ -195,7 +193,7 @@ export const useMarketplaceProducts = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.getProducts(filters);
+      const result: any = await marketplaceService.getProducts(filters);
       if (result.succeeded && result.data) {
         setProducts(result.data.items);
         setTotalCount(result.data.totalCount);
@@ -216,7 +214,7 @@ export const useMarketplaceProducts = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.createProduct(productData);
+      const result: any = await marketplaceService.createProduct(productData);
       if (result.succeeded && result.data) {
         setProducts(prev => [result.data!, ...prev]);
         setTotalCount(prev => prev + 1);
@@ -237,7 +235,7 @@ export const useMarketplaceProducts = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.updateProduct(id, productData);
+      const result: any = await marketplaceService.updateProduct(id, productData);
       if (result.succeeded && result.data) {
         setProducts(prev => prev.map(p => p.id === id ? result.data! : p));
         return result.data;
@@ -257,7 +255,7 @@ export const useMarketplaceProducts = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.deleteProduct(id);
+      const result: any = await marketplaceService.deleteProduct(id);
       if (result.succeeded) {
         setProducts(prev => prev.filter(p => p.id !== id));
         setTotalCount(prev => prev - 1);
@@ -299,7 +297,7 @@ export const useMarketplaceServices = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.getServices(filters);
+      const result: any = await marketplaceService.getServices(filters);
       if (result.succeeded && result.data) {
         setServices(result.data.items);
         setTotalCount(result.data.totalCount);
@@ -320,7 +318,7 @@ export const useMarketplaceServices = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.createService(serviceData);
+      const result: any = await marketplaceService.createService(serviceData);
       if (result.succeeded && result.data) {
         setServices(prev => [result.data!, ...prev]);
         setTotalCount(prev => prev + 1);
@@ -341,7 +339,7 @@ export const useMarketplaceServices = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.updateService(id, serviceData);
+      const result: any = await marketplaceService.updateService(id, serviceData);
       if (result.succeeded && result.data) {
         setServices(prev => prev.map(s => s.id === id ? result.data! : s));
         return result.data;
@@ -361,7 +359,7 @@ export const useMarketplaceServices = () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await marketplaceService.deleteService(id);
+      const result: any = await marketplaceService.deleteService(id);
       if (result.succeeded) {
         setServices(prev => prev.filter(s => s.id !== id));
         setTotalCount(prev => prev - 1);
