@@ -4,7 +4,7 @@ import { AuthCoreService } from './core';
 import { AuthProfileService } from './profile';
 import { AuthSecurityService } from './security';
 // import { AuthAccountService } from './account';
-import type { UserInfo } from '../../types/auth';
+import type { LoginResponse, UserInfo } from '../../types/auth';
 import { apiClient } from '../api';
 import type { Result } from '../../types/api';
 import { UserStatus } from '../../types/auth';
@@ -105,13 +105,11 @@ export class AuthService {
     const response = await this.coreService.login(credentials);
     console.log('[AuthService] Login response raw:', response);
 
-    const authResponse = response.data;
-    // The API client wraps the HTTP response, while some deployments return the
-    // backend result directly and others return LoginResponse as the payload.
-    const backendResult = authResponse && typeof authResponse === 'object' && 'succeeded' in authResponse
-      ? authResponse
-      : undefined;
-    const authData = backendResult?.data ?? authResponse;
+    // AuthCoreService returns the API envelope, so unwrap it once before
+    // reading login fields. Keeping this value explicitly typed prevents the
+    // envelope and payload from becoming an unsafe union.
+    const backendResult = response.data as Result<LoginResponse> | undefined;
+    const authData = backendResult?.data;
 
     if (response.succeeded && authData && (backendResult?.succeeded ?? true)) {
       const resultMessage = backendResult?.message ?? response.message;
