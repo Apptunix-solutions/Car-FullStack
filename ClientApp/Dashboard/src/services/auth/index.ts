@@ -106,10 +106,16 @@ export class AuthService {
     console.log('[AuthService] Login response raw:', response);
 
     const authResponse = response.data;
-    // HttpClient wraps backend response: { succeeded: true, data: Result<LoginResponse> }
-    // Backend returns: { succeeded: true, data: LoginResponse, errors: [] }
-    if (response.succeeded && authResponse && authResponse.succeeded && authResponse.data) {
-      const authData = authResponse.data; // The actual LoginResponse object
+    // The API client wraps the HTTP response, while some deployments return the
+    // backend result directly and others return LoginResponse as the payload.
+    const backendResult = authResponse && typeof authResponse === 'object' && 'succeeded' in authResponse
+      ? authResponse
+      : undefined;
+    const authData = backendResult?.data ?? authResponse;
+
+    if (response.succeeded && authData && (backendResult?.succeeded ?? true)) {
+      const resultMessage = backendResult?.message ?? response.message;
+      const resultErrors = backendResult?.errors ?? response.errors;
 
       let token = null;
       let userInfo = null;
@@ -217,7 +223,7 @@ export class AuthService {
         // Return success response in expected format
         return {
           succeeded: true,
-          message: authResponse.message || 'Login successful',
+          message: resultMessage || 'Login successful',
           data: {
             token: token,
             user: userInfo
@@ -231,13 +237,14 @@ export class AuthService {
           errors: ['Missing token or user data']
         };
       }
-      console.error('[AuthService] Login failed:', response);
-      return {
-        succeeded: false,
-        message: response.message || 'Login failed',
-        errors: response.errors || ['Login failed']
-      };
     }
+
+    console.error('[AuthService] Login failed:', response);
+    return {
+      succeeded: false,
+      message: backendResult?.message || response.message || 'Login failed',
+      errors: backendResult?.errors || response.errors || ['Login failed']
+    };
   }
 
   async register(userData: any): Promise<any> {
