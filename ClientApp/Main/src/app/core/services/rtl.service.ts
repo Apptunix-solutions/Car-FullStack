@@ -94,6 +94,8 @@ export class RtlService {
    * Update document-level direction
    */
   private updateDocumentDirection(layout: LayoutDirection): void {
+    if (typeof document === 'undefined') return;
+
     document.documentElement.dir = layout.direction;
     document.documentElement.setAttribute('data-direction', layout.direction);
     

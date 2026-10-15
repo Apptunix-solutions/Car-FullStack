@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, timer } from 'rxjs';
-import { catchError, map, retry, shareReplay, tap } from 'rxjs/operators';
+import { catchError, map, retry, shareReplay, tap, switchMap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { TranslationPerformanceService } from './translation-performance.service';
 
@@ -112,24 +112,30 @@ export class CustomTranslationLoader implements TranslateLoader {
 
     const url = `${environment.apiUrl}/v7/localization/translations/batch`;
 
+    const localTranslations$ = this.http.get<Record<string, any>>(`/assets/i18n/${lang}.json`).pipe(
+      catchError(() => lang === 'en-US'
+        ? of({})
+        : this.http.get<Record<string, any>>('/assets/i18n/en-US.json').pipe(catchError(() => of({}))))
+    );
+
     return this.http.post<Record<string, Record<string, string>>>(url, request).pipe(
       map(response => {
-        // Flatten the nested structure for ngx-translate
         const flattened: Record<string, any> = {};
 
         if (response && typeof response === 'object') {
-          Object.entries(response).forEach(([feature, translations]) => {
+          Object.values(response).forEach(translations => {
             if (translations && typeof translations === 'object') {
-              Object.entries(translations).forEach(([key, value]) => {
-                flattened[key] = value;
-              });
+              Object.assign(flattened, translations);
             }
           });
         }
 
-        console.log(`Loaded ${Object.keys(flattened).length} translations for ${lang} from API`);
         return flattened;
-      })
+      }),
+      catchError(() => of({})),
+      switchMap(apiTranslations => localTranslations$.pipe(
+        map(localTranslations => ({ ...localTranslations, ...apiTranslations }))
+      ))
     );
   }
 
