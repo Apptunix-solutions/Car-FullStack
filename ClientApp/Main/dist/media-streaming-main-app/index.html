@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-beasties-container>
+
+<head>
+  <meta charset="utf-8">
+  <title>Community Car - Main</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Font Preloading for CLS Optimization -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+  
+  <!-- Font Awesome with optimized loading -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+  
+  <!-- Font Fallback CSS to prevent CLS -->
+  <style>
+    /* Font fallbacks to prevent layout shift during font loading */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    /* Ensure consistent sizing during font swap */
+    .font-inter-loading {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 1.05em;
+      letter-spacing: 0.01em;
+    }
+    
+    /* Prevent invisible text during font load */
+    @font-face {
+      font-family: 'Inter';
+      font-display: swap;
+    }
+    
+    /* Critical CSS for above-the-fold content */
+    .cls-optimized-container {
+      position: relative;
+      width: 100%;
+    }
+    
+    .skeleton-element {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 0.25rem;
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      .skeleton-element {
+        animation: none;
+        background: #f0f0f0;
+      }
+    }
+  </style>
+<style>*,:before,:after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / .5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}:before,:after{--tw-content:""}html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:Inter,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}*{--tw-border-opacity:1;border-color:hsl(var(--color-border) / var(--tw-border-opacity, 1))}html{height:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}body{height:100%;--tw-bg-opacity:1;background-color:hsl(var(--color-background) / var(--tw-bg-opacity, 1));font-family:Inter,system-ui,sans-serif;--tw-text-opacity:1;color:hsl(var(--color-foreground) / var(--tw-text-opacity, 1));font-feature-settings:"rlig" 1,"calt" 1}.bg-background{--tw-bg-opacity:1;background-color:hsl(var(--color-background) / var(--tw-bg-opacity, 1))}.text-foreground{--tw-text-opacity:1;color:hsl(var(--color-foreground) / var(--tw-text-opacity, 1))}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.duration-300{animation-duration:.3s}:root{--color-background:0 0% 100%;--color-foreground:222.2 84% 4.9%;--color-card:0 0% 100%;--color-card-foreground:222.2 84% 4.9%;--color-popover:0 0% 100%;--color-popover-foreground:222.2 84% 4.9%;--color-primary:355 97% 58%;--color-primary-foreground:210 40% 98%;--color-secondary:210 40% 96.1%;--color-secondary-foreground:222.2 47.4% 11.2%;--color-muted:210 40% 96.1%;--color-muted-foreground:215.4 16.3% 46.9%;--color-accent:210 40% 96.1%;--color-accent-foreground:222.2 47.4% 11.2%;--color-destructive:0 84.2% 60.2%;--color-destructive-foreground:210 40% 98%;--color-border:214.3 31.8% 91.4%;--color-input:214.3 31.8% 91.4%;--color-ring:355 97% 58%;--radius:.5rem}:root{--rtl-transform-scale-x:1;--rtl-text-align:left;--rtl-float-direction:left;--rtl-margin-start:0 auto 0 0;--rtl-margin-end:0 0 0 auto;--rtl-border-radius-start:.5rem 0 0 .5rem;--rtl-border-radius-end:0 .5rem .5rem 0}</style><link rel="stylesheet" href="styles.9e2933d6937f3880.css" crossorigin="anonymous" integrity="sha384-6K0wqYxh2Ss5/DM7HcY/772uUX3XUNZSfAROsBv1vGuMWgIkJ4jG3tAK8ZBi93Tn" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.9e2933d6937f3880.css" crossorigin="anonymous" integrity="sha384-6K0wqYxh2Ss5/DM7HcY/772uUX3XUNZSfAROsBv1vGuMWgIkJ4jG3tAK8ZBi93Tn"></noscript></head>
+
+<body class="bg-background text-foreground transition-colors duration-300">
+  <app-root></app-root>
+<script src="runtime.9114c705cf17db65.js" type="module" crossorigin="anonymous" integrity="sha384-KeVV156MTvlFS83oCYBjatk96whi7t4gtCPSv4F1iEevCHxr7QNPGvav8oQ6kRwE"></script><script src="polyfills.368997f30342ec29.js" type="module" crossorigin="anonymous" integrity="sha384-4WlUNPGKw6xXt3suVRMampNjnK51hgHKoE1QtXws5N+eX8ed61zAJyP/6MbBAY+0"></script><script src="vendor.ad392db43b27f42d.js" type="module" crossorigin="anonymous" integrity="sha384-fts/CEAvsR02ttJqNVZNgzU96kcoFeIKUhdd67Jqp4avqXY3PyEe9R6UbTqEwN5J"></script><script src="main.921295231a0b5c08.js" type="module" crossorigin="anonymous" integrity="sha384-3pK6hm2pyLzB/KlGP4xKi8Ap3Y43OKVWyE34lVphvTjs6WIIwIkxtv3H06StCcOw"></script></body>
+
+</html>

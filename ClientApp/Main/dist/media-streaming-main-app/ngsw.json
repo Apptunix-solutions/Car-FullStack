@@ -1,0 +1,195 @@
+{
+  "configVersion": 1,
+  "timestamp": 1792034294296,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/139.0e99d8c2ad2b3523.js",
+        "/147.594a03b102cb5302.js",
+        "/167.67080e1d7a616e9d.js",
+        "/209.2c68c85110bb57e9.js",
+        "/23.bbf6241c683f6cdc.js",
+        "/314.6e62f5eab15aef08.js",
+        "/317.0fee4039da31b8d7.js",
+        "/353.8823ab2a249a05f8.js",
+        "/384.1f4eb854bbbaf42d.js",
+        "/391.b8bb1d519aacee82.js",
+        "/435.a5fadc4b1a836a33.js",
+        "/472.5ca13d3d4bafbc72.js",
+        "/473.ac88dfff98846491.js",
+        "/486.ee048d3947fa8cf8.js",
+        "/494.c69130a76f462e84.js",
+        "/523.ede189c2b4171701.js",
+        "/541.c5befb4cbf928a8b.js",
+        "/573.ff203bd88608f46e.js",
+        "/575.e7264e395adf32b1.js",
+        "/590.2e3ef7746057bf89.js",
+        "/637.9f9711b895f1a2a7.js",
+        "/671.c89bee436abe3cea.js",
+        "/708.2be1b2b6be9dae0d.js",
+        "/713.f4d0da9d69c8eba7.js",
+        "/734.490356de6914d43c.js",
+        "/743.d43c29d1dc14e518.js",
+        "/747.9e3b9af628193d52.js",
+        "/757.e8c3aa7344760318.js",
+        "/785.85e906f3ff2352a6.js",
+        "/791.8e0004b10b7016c0.js",
+        "/794.58fe284252a1bd45.js",
+        "/813.d2199a75fb07f1d9.js",
+        "/841.bfcf32dd00aeacdf.js",
+        "/887.1705a3648f656edd.js",
+        "/95.e83d83bbf77a1249.js",
+        "/953.4869b22d6bd86717.js",
+        "/963.0c6bce3e50797bb2.js",
+        "/971.b37cf761fd1ec06e.js",
+        "/989.e8e5f39636758f9b.js",
+        "/common.7be6f669fe77c68d.js",
+        "/index.html",
+        "/main.921295231a0b5c08.js",
+        "/polyfills.368997f30342ec29.js",
+        "/runtime.9114c705cf17db65.js",
+        "/styles.9e2933d6937f3880.css",
+        "/vendor.ad392db43b27f42d.js"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/i18n/ai-agent/ar-AE.json",
+        "/assets/i18n/ai-agent/ar-EG.json",
+        "/assets/i18n/ai-agent/ar-SA.json",
+        "/assets/i18n/ai-agent/en-US.json",
+        "/assets/i18n/ar-AE.json",
+        "/assets/i18n/ar-EG.json",
+        "/assets/i18n/ar-SA.json",
+        "/assets/i18n/en-US.json",
+        "/assets/images/default-avatar.jpg",
+        "/assets/images/podcast-placeholder.jpg",
+        "/assets/images/video-placeholder.jpg",
+        "/assets/logo.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-performance",
+      "patterns": [
+        "\\/api\\/performance\\/.*"
+      ],
+      "strategy": "performance",
+      "maxSize": 100,
+      "maxAge": 259200000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    },
+    {
+      "name": "api-freshness",
+      "patterns": [
+        "\\/api\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 100,
+      "maxAge": 3600000,
+      "timeoutMs": 10000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/139.0e99d8c2ad2b3523.js": "6c0d23c83a2f8b552e18bdeafa34207627de5f69",
+    "/147.594a03b102cb5302.js": "4db5cda1708dac9e9873e36973ad6c2fe2b6bea8",
+    "/167.67080e1d7a616e9d.js": "d9688ce1816d1f5696e52dbb5bdaf777d85b6d70",
+    "/209.2c68c85110bb57e9.js": "da2c5a70e0757c2e2291c36b9a51eec8a7c0dcdb",
+    "/23.bbf6241c683f6cdc.js": "43a6076ae52ac2f3a9394dcdbde5c27012ff8293",
+    "/314.6e62f5eab15aef08.js": "ef1a276159259eca9cd58c007896a99b123afce5",
+    "/317.0fee4039da31b8d7.js": "7238e22f4305ec326f25e6848f877a82a25c4a72",
+    "/353.8823ab2a249a05f8.js": "92393d30dddd8d6aa992ace6a2ad2288dfcdb61f",
+    "/384.1f4eb854bbbaf42d.js": "622a4d1419d0461b287c9c8504e944b1858edd74",
+    "/391.b8bb1d519aacee82.js": "5d227ec1aea28cec36c26de1de4f3d3bd4423cdd",
+    "/435.a5fadc4b1a836a33.js": "047b6c6dfa3b09ee17ea380f0035854cd0efa505",
+    "/472.5ca13d3d4bafbc72.js": "3c93ee14c2a8c2764e8913c4943bf0818da7fad1",
+    "/473.ac88dfff98846491.js": "253750caa90ea701c047c2c1ccd4ea63a4a0bd0a",
+    "/486.ee048d3947fa8cf8.js": "f10896bb2b654c2eb2f9f6d564f3304ef68003db",
+    "/494.c69130a76f462e84.js": "e5c5fc5318eb3a41c103ae7ec9d30a9b6cf31d21",
+    "/523.ede189c2b4171701.js": "c3bdeae3d92a62c4bfcb8aadcb5312cf42ed4bda",
+    "/541.c5befb4cbf928a8b.js": "a71ec59e6e776fb5f33cd635a7a13a667133c531",
+    "/573.ff203bd88608f46e.js": "877a9b90b658173c27cd3839688c670ff801aef0",
+    "/575.e7264e395adf32b1.js": "94efd15ed288a584fb4ea2e335c4e92ceaef39f5",
+    "/590.2e3ef7746057bf89.js": "2a9ea3a1b4a17188a3468829a91084e630cdcfc9",
+    "/637.9f9711b895f1a2a7.js": "ec30643591121c405c1c84a1444fb1a70df1dc61",
+    "/671.c89bee436abe3cea.js": "a3cf1d793206dd3422b08a4d5cbcf63269687d87",
+    "/708.2be1b2b6be9dae0d.js": "34e16f01cac30f3e52c7d7dbce905c3d1a4a56c0",
+    "/713.f4d0da9d69c8eba7.js": "29f82dbb728b58921f8f8c6ec23bf7b52141847c",
+    "/734.490356de6914d43c.js": "42aa588f41d07116c732842483882779a7f61afa",
+    "/743.d43c29d1dc14e518.js": "cc291a257c11241ab74fe2d85419dfdfde8d8f98",
+    "/747.9e3b9af628193d52.js": "bc7cd0398e31ca48ba467b3bc2f1880c40950caf",
+    "/757.e8c3aa7344760318.js": "cc37d9702e415762ed24b8a69bfbdc958614428e",
+    "/785.85e906f3ff2352a6.js": "e659e76093dd16bbb6d9a3f014dda4b5c830e969",
+    "/791.8e0004b10b7016c0.js": "2c7c5ab3022be607fe81f48240dede099a117530",
+    "/794.58fe284252a1bd45.js": "69234077db9df5a5db012c72bae9258eb3f6380b",
+    "/813.d2199a75fb07f1d9.js": "7fcd52de13d3be88b9bc9ca52edcc8a18cf295c4",
+    "/841.bfcf32dd00aeacdf.js": "52f58e0577e361d1b7e28e204dd9298cb1af0388",
+    "/887.1705a3648f656edd.js": "e005a2d6d1328726a71cab8aba41ab2b294382b5",
+    "/95.e83d83bbf77a1249.js": "471f0e7958173c3dde6a03b468e4c2cc75b3fcb0",
+    "/953.4869b22d6bd86717.js": "37eb3658687e7b358c18608816c1b246bb88c08f",
+    "/963.0c6bce3e50797bb2.js": "d34e8b201ce7914f33e72c13b90118b2244661ed",
+    "/971.b37cf761fd1ec06e.js": "ea21ad0940d7ddac56f23d3958a80573ea3500e1",
+    "/989.e8e5f39636758f9b.js": "34b1c5104ed9751d66214c153b3e623a02e3aad5",
+    "/assets/i18n/ai-agent/ar-AE.json": "ccb8b13877568d99ccd69e18fcfe0698d838e20a",
+    "/assets/i18n/ai-agent/ar-EG.json": "ccb8b13877568d99ccd69e18fcfe0698d838e20a",
+    "/assets/i18n/ai-agent/ar-SA.json": "ccb8b13877568d99ccd69e18fcfe0698d838e20a",
+    "/assets/i18n/ai-agent/en-US.json": "c42369b477b24d70ebd24870f35c83ed85a1a3e6",
+    "/assets/i18n/ar-AE.json": "6e75a7cbab5d2028d94366a48a286dd54feb1e0e",
+    "/assets/i18n/ar-EG.json": "8959381ba048a6305894801eab47d88ae1d1978a",
+    "/assets/i18n/ar-SA.json": "6e75a7cbab5d2028d94366a48a286dd54feb1e0e",
+    "/assets/i18n/en-US.json": "c9f08b038bb4a08d84ac7a4310198d9144c13016",
+    "/assets/images/default-avatar.jpg": "f61b3a5b80e0816de19c9b0056c62e6ca2176b69",
+    "/assets/images/podcast-placeholder.jpg": "fecf24fde60b5666637348a89bddbf8d2ab91a98",
+    "/assets/images/video-placeholder.jpg": "50bd3142a7b41ce0df7cb84b91f725ea54f9466d",
+    "/assets/logo.png": "59ba2ea89a2f4400b6cdb30e9be0c881ae920744",
+    "/common.7be6f669fe77c68d.js": "048a323573d2a686deed5ceac97571aab9257e40",
+    "/index.html": "ab1e31379d89580883e9c0272c1be8a39b523bb5",
+    "/main.921295231a0b5c08.js": "7aaea81ef01403e4c485995f369ce17932e12af1",
+    "/polyfills.368997f30342ec29.js": "5f6e0c442c1d59f4c33c5d84d74248e72a286480",
+    "/runtime.9114c705cf17db65.js": "03ab40eaa28d7c0aefcc7cc50020912c6b1f4dfd",
+    "/styles.9e2933d6937f3880.css": "891516958b9624bc7391cc5a962122dd13722b26",
+    "/vendor.ad392db43b27f42d.js": "feefd3efd4272d101e064663f850655a70f8d7a3"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
